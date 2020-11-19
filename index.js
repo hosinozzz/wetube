@@ -1,19 +1,17 @@
-const express = require('express')
+import "core-js";
+import express from "express";
+//const express = require('express')   //임포트하는 편이 더 세련됨
+
 const app = express()
 
 const PORT = 4000;
 
-function handleListening() {
-    console.log(`Listening on: http://localhost:${PORT}`);
-}
+const handleListening = () => console.log(`Listening on: http://localhost:${PORT}`);
 
-function handleHome(req, res) {
-    res.send("hi cool sexy");
-}
 
-function handleProfile(req, res) {
-    res.send("you are on my sexy cool guy")
-}
+const handleHome = (req, res) => res.send("hi cool sexy");
+
+const handleProfile = (req, res) => res.send("you are on my sexy cool guy");
 
 app.get("/", handleHome);
 
