@@ -13,8 +13,14 @@ const handleHome = (req, res) => res.send("hi cool sexy");
 
 const handleProfile = (req, res) => res.send("you are on my sexy cool guy");
 
-app.get("/", handleHome);
+const betweenHome = (req, res, next) => {
+    console.log("I,m cool awesome between");
+    next();
+};
 
+
+app.use(betweenHome);
+app.get("/", handleHome);
 app.get("/profile", handleProfile);
 
 app.listen(PORT, handleListening);
