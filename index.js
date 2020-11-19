@@ -1,6 +1,10 @@
 import "core-js";
 import express from "express";
 //const express = require('express')   //임포트하는 편이 더 세련됨
+import morgan from "morgan";
+import helmet from "helmet";
+import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
 
 const app = express()
 
@@ -13,14 +17,14 @@ const handleHome = (req, res) => res.send("hi cool sexy");
 
 const handleProfile = (req, res) => res.send("you are on my sexy cool guy");
 
-const betweenHome = (req, res, next) => {
-    console.log("I,m cool awesome between");
-    next();
-};
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(helmet());
+app.use(morgan("dev"));
 
-
-app.use(betweenHome);
 app.get("/", handleHome);
+
 app.get("/profile", handleProfile);
 
 app.listen(PORT, handleListening);
