@@ -44,8 +44,15 @@ const config = {
   },
   output: {
     path: OUTPUT_DIR,
-    filename: "[name].[format]",
+    filename: "[name].js",
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+    }),
+  ],
 };
 
 module.exports = config;
