@@ -2,7 +2,9 @@ import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
 
-export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
+export const getJoin = (req, res) => {
+  res.render("join", { pageTitle: "Join" });
+};
 
 export const postJoin = async (req, res, next) => {
   const {
@@ -21,14 +23,13 @@ export const postJoin = async (req, res, next) => {
       next();
     } catch (error) {
       console.log(error);
+      res.redirect(routes.home);
     }
-    res.redirect(routes.home);
   }
 };
 
-export const getLogin = (req, res) => {
-  res.render("login", { pageTitle: "Login" });
-};
+export const getLogin = (req, res) =>
+  res.render("login", { pageTitle: "Log In" });
 
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
@@ -117,5 +118,23 @@ export const userDetail = async (req, res) => {
 
 export const getEditProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
+
+export const postEditProfile = async (req, res) => {
+  const {
+    body: { name, email },
+    file,
+  } = req;
+  try {
+    await User.findByIdAndUpdate(req.user.id, {
+      name,
+      email,
+      avatarUrl: file ? file.path : req.user.avatarUrl,
+    });
+    res.redirect(routes.me);
+  } catch (error) {
+    res.render("editProfile", { pageTitle: "Edit Profile" });
+  }
+};
+
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
