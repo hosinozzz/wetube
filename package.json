@@ -42,6 +42,8 @@
     "dev:server": "nodemon --exec babel-node init.js --delay 2 --ignore '.scss' --ignore 'static' ",
     "dev:assets": "cross-env WEBPACK_ENV=development webpack -w",
     "build:assets": "cross-env WEBPACK_ENV=production webpack",
+    "build:server": "babel",
+    "build": "npm run build:server && npm run build:assets",
     "tunnel": "lt --port 4000"
   },
   "devDependencies": {

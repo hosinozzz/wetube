@@ -2,10 +2,10 @@ header.header
     .header__wrapper
         .header__column
             a(href=routes.home)
-                i.fab.fa-youtube
+                i.fab.fa-youtube ♥RiaTube♥
         .header__column
             form(action=routes.search, method="get")
-                input(type="text", placeholder="Search by term...", name="term")
+                input(type="text", placeholder="検索内容を入力してください。", name="term")
         .header__column
             ul
                 if !loggedUser
