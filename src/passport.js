@@ -15,7 +15,7 @@ passport.use(
     {
       clientID: process.env.GH_ID,
       clientSecret: process.env.GH_SECRET,
-      callbackURL: process.env.GH_REDIRECT,
+      callbackURL: process.env.GITHUB_REDIRECT,
     },
     githubLoginCallback
   )
