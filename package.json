@@ -59,6 +59,7 @@
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
     "tunnel": "lt --port 4000",
     "start": "PRODUCTION=true node build/init.js",
+    "prebuild": "shx rm -rf build",
     "prestart": "npm run build"
   },
   "devDependencies": {},
