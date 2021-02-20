@@ -18,7 +18,6 @@ passport.use(
       callbackURL: process.env.PRODUCTION
         ? `https://whispering-harbor-25192.herokuapp.com/${routes.githubCallback}`
         : `http://localhost:4000${routes.githubCallback}`,
-      proxy: true,
     },
     githubLoginCallback
   )
